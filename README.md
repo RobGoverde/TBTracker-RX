@@ -22,17 +22,15 @@ Optional components:
 # Libraries needed
 The sketch uses several libraries. Some will probably already be installed in your Arduino IDE but if not, follow the directions below:
 
-- ArduinoJson library (install from the library manager)
-- Adafruit_SSD1306 library (install from the library manager)
-- Adafruit_GFX library (install from the library manager)
-- Adafruit_BusIO library (install from the library manager)
-- Radiolib library (install from the library manager)
-- TinyGPSPlus library ((install from the library manager)
-- XPowersLib (needed as of release V0.0.11. Install from the library manager)
-- ESPAsyncWebServer library (download: https://github.com/me-no-dev/ESPAsyncWebServer/archive/master.zip )
-- AsyncTCP library (download: https://github.com/me-no-dev/AsyncTCP/archive/master.zip )
-
-Install the last two libraries from the IDE menu: Sketch -> Include Library -> Add .ZIP library
+- ArduinoJson by Benoit Blanchon (install from the library manager)
+- Adafruit SSD1306 by Adafruit (install from the library manager, with all dependecies)
+- Adafruit GFX library by Adafruit (install from the library manager)
+- Adafruit BusIO by Adafruit (install from the library manager)
+- Radiolib by Jan Gromes (install from the library manager)
+- TinyGPSPlus by Mikal Hart (install from the library manager)
+- XPowersLib by Lewis He (needed as of release V0.0.11. Install from the library manager)
+- ESP Async WebServer by ESP32Async (install from the library manager)
+- Async TCP by ESP32Async (install from the library manager)
 
 # settings.h
 You will need to change the values in settings.h before you can use the sketch.

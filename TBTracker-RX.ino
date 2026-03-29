@@ -10,6 +10,7 @@
 * Be sure you run the latest version of the Arduino IDE.
 *
 * V0.0.13
+
 * 31-10-2025:  Sending humidity as "ext_humidity" so it will show up in the grafana dashboard
 *
 * V0.0.12
@@ -230,11 +231,10 @@ void uploadTelemetry(void * parameter)
 ************************************************************************************/
 void setup() 
 {
-  // disable brownout
-  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
-
+  SPI.begin(RADIO_SCLK_PIN, RADIO_MISO_PIN, RADIO_MOSI_PIN,RADIO_CS_PIN);
+ 
   Serial.begin(115200);
-  
+
   // Switching off bluetooth
   btStop();
 
@@ -244,8 +244,12 @@ void setup()
      Serial.println(F("SOFTWARE IS IN DEVELOPMENT MODE, Data will not be shown on Sondehub. Change DEVFLAG in settings.h"));
   }
 
+#if !defined(USE_SX1280) //These gave problems with my T3-S3 SX1280, could be the board but disabled them for the SX1280 for now.
+  // disable brownout
+  WRITE_PERI_REG(RTC_CNTL_BROWN_OUT_REG, 0); 
   // Initialize the Power Management chip if present 
   XPowerInit();
+#endif
 
   // Create the Telemetry queue with 3 slots of 10124 bytes
   telemetry_Queue = xQueueCreate(3, 1024);

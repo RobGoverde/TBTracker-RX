@@ -1,3 +1,12 @@
+# 2.4 GHz support
+This fork adds LoRa 2.4GHz support with a SX1280 radio module to TBTracker-RX.
+It is developed and tested on a LilyGO T3-S3 SX1280PA board.
+The main idea of this 2.4 GHz LoRa usage is to get more transfer speed on SSDV images, but also just to give the opertunity to experiment with 2.4 GHz RF.
+The SSDV transfer is still in development but telemetry transfer with a edited version of TBTracker-ESP32 was already successful.
+To account for the different capabilitys of the SX1280 I have created a lora mode "24" as the SX1280 is not capable of transmitting/receiving on the regular LoRa settings, mainly the bandwidth.
+
+This is still very much experimental.
+
 # TBTracker-RX
 A cheap, mobile LoRa High Altitude Balloon receiver for Arduino based on esp32 and sx1278 with support for GPS, a web interface and an OLED display. As of v0.0.9 it supports ssdv.
 

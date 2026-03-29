@@ -8,7 +8,13 @@
 * Globals
 ************************************************************************************/
 // Pin numbers are defined in the settings file
+#if defined(USE_SX1278)
 SX1278 radio = new Module(PIN_NSS, PIN_DIO0, PIN_RESET, PIN_DIO1);
+#endif
+
+#if defined(USE_SX1280)
+SX1280 radio = new Module(RADIO_CS_PIN, RADIO_DIO1_PIN, RADIO_RST_PIN, RADIO_BUSY_PIN);
+#endif
 
 #if defined(ESP8266) || defined(ESP32)
   ICACHE_RAM_ATTR
@@ -37,6 +43,7 @@ void setupLoRa()
   // 2 = (normal for repeater)       Explicit mode, Error coding 4:8, Bandwidth 62.5kHz,  SF 8, Low data rate optimize off
   // 3 = (normal for fast SSDV)      Explicit mode, Error coding 4:6, Bandwidth 250kHz,   SF 7, Low data rate optimize off
   // 5 = (normal for calling mode)   Explicit mode, Error coding 4:8, Bandwidth 41.7kHz, SF 11, Low data rate optimize off
+  // 24 = (SX1280 2.4GHz Special)    Explicit mode, Error coding 4:8, Bandwidth 203.125, SF 9 (experimental)
   // 99 = (LoRa APRS)                Explicit mode, Error coding 4:5, Bandwidth 125KHz,  SF 12 (experimental) - Only receiving, no igating, no uploading, experimental
   
   int16_t state = radio.begin();
@@ -84,6 +91,14 @@ void setupLoRa()
       LoRaSettings.ModeString = "LoRa Mode 5";           
     break;  
 
+    case 24:
+      LoRaSettings.CodeRate = 7;
+      LoRaSettings.Bandwidth = 203.125 ;      
+      LoRaSettings.SpreadFactor = 9;  
+      LoRaSettings.SyncWord = 0x12; 
+      LoRaSettings.ModeString = "LoRa Mode 24";          
+    break;  
+
     case 99:
       // Experimental
       // Frequency should be set to 433.775 in settings.h 
@@ -104,6 +119,7 @@ void setupLoRa()
 
   // Set the radio to LoRa mode specific settings
   // Add some extra radio parameters
+  #if defined(USE_SX1278)
   switch (LoRaSettings.LoRaMode)
   {
    case 0:
@@ -128,6 +144,31 @@ void setupLoRa()
       state = radio.startReceive();
    break;
   }
+#endif
+
+  #if defined(USE_SX1280) //This worked a bit different for the SX1280. Also got CRC errors so disabled (for now).
+  switch (LoRaSettings.LoRaMode)
+  {
+   case 0:
+      // Low Data Rate Optimization 
+        radio.explicitHeader();
+      radio.setDio1Action(setFlag);  // As of RadioLib 6.0.0 all methods to attach interrupts no longer have a default level change direction
+      state = radio.startReceive();
+   break; 
+   case 1:
+      // Mode 1 needs an implicit header with data length defined in advance 
+      radio.implicitHeader(LoRaSettings.implicitHeader);
+      radio.setCRC(false);
+      radio.setDio1Action(setFlag);
+      state = radio.startReceive(LoRaSettings.implicitHeader);
+   break;  
+   default:
+      radio.explicitHeader();
+      radio.setDio1Action(setFlag);
+      state = radio.startReceive();
+   break;
+  }
+#endif
 
   if (state == RADIOLIB_ERR_NONE) 
   {

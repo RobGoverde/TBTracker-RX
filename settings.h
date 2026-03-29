@@ -19,8 +19,18 @@
 * For example: your home network, you phone's mobile hotspot and maybe another network
 * You need to specify at least 1 SSID and password 
 ************************************************************************************/
+<<<<<<< HEAD
+<<<<<<< HEAD
 #define WIFI_SSID_1  "MySSID"
 #define WIFI_PASSWORD_1 "MyPassword"
+=======
+#define WIFI_SSID_1  "Wifi SSID"
+#define WIFI_PASSWORD_1 "Wifi Password"
+>>>>>>> 82ea1da (Removed own Wifi info.)
+=======
+#define WIFI_SSID_1  "Wifi SSID"
+#define WIFI_PASSWORD_1 "Wifi Password"
+>>>>>>> a01ab7db5a11546230187fff873f28febf84abf2
  
 #define WIFI_SSID_2  "MyMobileHotspot"
 #define WIFI_PASSWORD_2 "MyOtherPassword"
@@ -62,10 +72,35 @@
 * Change if needed
 ************************************************************************************/
 // Below are the settings for a TTGO T-BEAM v1. Yours might be different!
-#define PIN_NSS   18 
-#define PIN_DIO0  26
-#define PIN_RESET 23  
-#define PIN_DIO1  33
+
+//#define USE_SX1278
+//#define RADIO_CS_PIN   -1 
+//#define RADIO_DIO1_PIN  -1
+//#define RADIO_RST_PIN -1  
+//#define RADIO_BUSY_PIN  -1
+
+/************************************************************************
+* PIN NUMBERS for Lilygo T3-S3 1280
+*  
+* Change if needed
+************************************************************************************/
+// Yours might be different!
+
+#define USE_SX1280
+#define RADIO_SCLK_PIN 5
+#define RADIO_MISO_PIN 3
+#define RADIO_MOSI_PIN 6
+
+#define RADIO_CS_PIN    7 
+#define RADIO_DIO1_PIN  9
+#define RADIO_RST_PIN   8  
+#define RADIO_BUSY_PIN  36
+
+#define I2C_SDA         18
+#define I2C_SCL         17
+#define PMU_IRQ_BTN     -1 
+
+#define WITH_PA //Uncomment if you use the SX1280 with PowerAmp (this needs a pin swap for TX.)
 
 /************************************************************************
 * PIN NUMBERS for optional GPS
@@ -76,13 +111,13 @@
 ************************************************************************************/
 // Remove or comment out the next line if your ESP32 does NOT has a GPS chip
 // Leave the define when you have a GPS connected to your esp32
-#define USE_GPS
+//#define USE_GPS
 // Pin numbers for the optional GPS chip.
 // Older verions of the  T-Beams use 12,15
 // Newer versions of the T-Beam use 12,34.
 // yours might be different!
-#define GPS_RX 34
-#define GPS_TX 12
+#define GPS_RX -1
+#define GPS_TX -1
 #define GPS_BAUD 9600
 // Uncomment to print GPS Debuging info
 //#define GPS_DEBUG
@@ -105,7 +140,7 @@
 *  
 * Change when needed
 ************************************************************************************/
-#define LORA_FREQUENCY  434.126      // Frequency the radio chip is listening
+#define LORA_FREQUENCY  2400.0      // Frequency the radio chip is listening
 #define LORA_BANDWIDTH 125.0         // Do not change, change LORA_MODE instead
 #define LORA_SPREADFACTOR 9          // Do not change, change LORA_MODE instead
 #define LORA_CODERATE 7              // Do not change, change LORA_MODE instead
@@ -126,8 +161,8 @@
 
 // Default tracker mode = 2
 // If you set the radio to mode 99, be sure to set the frequency to 433.775, which is the standard for LoRa-APRS
-#define LORA_MODE 2  // Mode 2 is usually used for simple telemetry data for pico balloons
-#define LORA_MODULATION "LoRa Mode 2" // This string will be visible in Sondehub
+#define LORA_MODE 24  // Mode 2 is usually used for simple telemetry data for pico balloons
+#define LORA_MODULATION "LoRa Mode 24" // This string will be visible in Sondehub
 
 /***********************************************************************************
 * FLASH PIN settings

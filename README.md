@@ -7,6 +7,9 @@ To account for the different capabilitys of the SX1280 I have created a lora mod
 
 This is still very much experimental.
 
+[30-03-2026]
+First SSDV test where a succes after disabling auto freq correct.
+
 # TBTracker-RX
 A cheap, mobile LoRa High Altitude Balloon receiver for Arduino based on esp32 and sx1278 with support for GPS, a web interface and an OLED display. As of v0.0.9 it supports ssdv.
 

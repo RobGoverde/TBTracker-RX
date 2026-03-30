@@ -246,8 +246,8 @@ void receiveLoRa()
       Telemetry.snr = radio.getSNR();
       Telemetry.frequency_error = radio.getFrequencyError();
 
-      // Get the frequency error and retune
-      LoRaSettings.Frequency = LoRaSettings.Frequency - (Telemetry.frequency_error / 1000000);
+      // Get the frequency error and retune (Commented out for now.)
+     // LoRaSettings.Frequency = LoRaSettings.Frequency - (Telemetry.frequency_error / 1000000);
       radio.setFrequency(LoRaSettings.Frequency);
 
       // Then get back to receiving

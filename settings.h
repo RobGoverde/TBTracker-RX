@@ -19,22 +19,13 @@
 * For example: your home network, you phone's mobile hotspot and maybe another network
 * You need to specify at least 1 SSID and password 
 ************************************************************************************/
-<<<<<<< HEAD
-<<<<<<< HEAD
-#define WIFI_SSID_1  "MySSID"
-#define WIFI_PASSWORD_1 "MyPassword"
-=======
-#define WIFI_SSID_1  "Wifi SSID"
-#define WIFI_PASSWORD_1 "Wifi Password"
->>>>>>> 82ea1da (Removed own Wifi info.)
-=======
-#define WIFI_SSID_1  "Wifi SSID"
-#define WIFI_PASSWORD_1 "Wifi Password"
->>>>>>> a01ab7db5a11546230187fff873f28febf84abf2
- 
-#define WIFI_SSID_2  "MyMobileHotspot"
-#define WIFI_PASSWORD_2 "MyOtherPassword"
 
+#define WIFI_SSID_1  "x"
+#define WIFI_PASSWORD_1 "x"
+
+#define WIFI_SSID_2  "Wifi2 SSID"
+#define WIFI_PASSWORD_2 "Wifi2 Password"
+ 
 #define WIFI_SSID_3  ""
 #define WIFI_PASSWORD_3 ""
 
@@ -51,7 +42,7 @@
 // Antenna used (optional)
 #define ANTENNA_USED "GP"
 // Radio used (optional)
-#define RADIO_USED "T-Beam"
+#define RADIO_USED "SX1280"
 // Display the mobile flag (car icon) on the map
 #define I_AM_MOBILE false
 // Display a custom comment on sondehub. Just comment it out if you do not want a custom comment

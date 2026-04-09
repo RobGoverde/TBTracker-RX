@@ -99,6 +99,14 @@ void setupLoRa()
       LoRaSettings.ModeString = "LoRa Mode 24";          
     break;  
 
+    case 25: //Full SX1280 Bandwidth!
+      LoRaSettings.CodeRate = 7;
+      LoRaSettings.Bandwidth = 1625.0;      
+      LoRaSettings.SpreadFactor = 9;  
+      LoRaSettings.SyncWord = 0x12; 
+      LoRaSettings.ModeString = "LoRa Mode 25";          
+    break;  
+
     case 99:
       // Experimental
       // Frequency should be set to 433.775 in settings.h 

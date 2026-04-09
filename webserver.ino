@@ -60,7 +60,8 @@ const char index_html[] PROGMEM = R"rawliteral(
         <option value="2">Mode 2</option>
         <option value="3">Mode 3</option>
         <option value="5">Mode 5</option>
-        <option value="24">Mode 24</option>       
+        <option value="24">Mode 24</option>      
+        <option value="25">Mode 25</option>
         <option value="99">LoRa APRS (experimental)</option>
       </select>
       <input type="submit" value="change">
